@@ -1,0 +1,128 @@
+
+.big.news-block {
+    height: 600px;
+    margin: 0;
+}
+
+.news-block {
+    height: 290px;
+    border-radius: 10px;
+}
+
+.news-item {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.news-block:first-child {
+    margin-bottom: 20px;
+}
+
+.news-item .img {
+    width: 100%;
+    height: 100%;
+}
+
+.news-item .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-item .caption-text, .big .news-item .caption-text {
+    position: absolute;
+    /*  top: 0; */
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    padding: 0 20px;
+    color: #fff;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+}
+
+.news-item .caption-text .title-text {
+    font-size: 16px;
+}
+
+.news-item .caption-text .date-text {
+    font-size: 18px;
+}
+
+.big .news-item .caption-text .title-text {
+    font-size: 25px;
+}
+
+.big .news-item .caption-text .date-text {
+    font-size: 22px;
+}
+
+ul.nav-pagination {
+    display: inline-block;
+    list-style-type: none;
+    padding: 10px 0;
+}
+
+ul.nav-pagination li {
+    display: inline-block;
+}
+
+ul.nav-pagination li a {
+    padding: 10px;
+}
+
+a.news-block-link:hover .grad {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: rgb(60, 0, 0, 0.5);
+}
+
+span.color {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    position: absolute;
+    margin-top: -40px;
+}
+
+span.color.green {
+    background-color: #05af05;
+}
+
+span.color.orange {
+    background-color: #f1860d;
+}
+
+span.color.red {
+    background-color: #f1280d;
+}
+
+span.color.yellow {
+    background-color: #f1ce02;
+}
+
+span.color.blue {
+    background-color: #2453ea;
+}
+
+
+@media (max-width: 768px) {
+    .big.news-block {
+        height: 400px;
+    }
+
+    .big .news-item .caption-text .title-text {
+        font-size: 20px;
+    }
+
+    .big .news-item .caption-text .date-text {
+        font-size: 18px;
+    }
+}
+
+.slider {
+
+    background-image: url("../images/news.jpg");
+}
