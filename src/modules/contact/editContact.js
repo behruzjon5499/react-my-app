@@ -1,34 +1,41 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../assets/styles/contact.css'
 import 'font-awesome/css/font-awesome.min.css';
 import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import {useHistory} from "react-router"
-import {Link} from "react-router-dom";
-import { FiInstagram } from 'react-icons/fi';
-import { FaTelegramPlane,FaFacebookSquare,FaPhone,FaEnvelope ,FaGlobe} from 'react-icons/fa';
-// toast.configure();
-const Contact = () => {
+import {Link, useParams} from "react-router-dom";
 
-
+const EditContacts = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [subject, setSubject] = useState('');
     const [phone, setPhone] = useState('');
     const [message, setMessage] = useState('');
-    const contacts = useSelector((state) => state)
+    const {id} = useParams()
+    const contacts = useSelector(state => state)
+    const currentContact = contacts.find(contact => contact.id === parseInt(id))
+
+    useEffect(()=>{
+        if (currentContact){
+        setName(currentContact.name);
+        setEmail(currentContact.email);
+        setPhone(currentContact.phone);
+        setSubject(currentContact.subject);
+        setMessage(currentContact.message);
+        }
+    },[currentContact])
+
+
     const history = useHistory()
     const dispatch = useDispatch()
-    const handleSubmit = (e) => {
+    const deleteContact=()=>{
+        dispatch({type:'DELETE_CONTACT',payload:id})
+        toast.success('Delete Contact Successfully')
+    }
+    const editContact = (e) => {
         e.preventDefault();
-        const checkEmail  = contacts.find(contact=>contact.email===email && contact)
-        const checkPhone  = contacts.find(contact=>contact.phone === phone && contact)
-        if (checkEmail){
-            return toast.error(     'This email already saved')
-        }
-        if (checkPhone){
-            return toast.error('This phone already saved')
-        }
+
         if (!email || !name || !subject || !phone) {
             return toast.warning('Please to`ldiring');
         }
@@ -40,8 +47,8 @@ const Contact = () => {
             phone,
             message
         }
-        dispatch({type: 'ADD_CONTACT', payload: data})
-        toast.success('Successfully')
+        dispatch({type: 'UPDATE_CONTACT', payload: data})
+        toast.success('Update Successfully')
         history.push('/')
     }
     return (
@@ -50,19 +57,16 @@ const Contact = () => {
             <section className="contact-page-section">
                 <div className="container">
                     <div className="sec-title">
-                        <div className="title" style={{display:'block'}}>Contact Us</div>
                         <div className="row">
                             <div className="col-md-10">
-                                <h2 style={{display:'inline'}}>Let's Get in Touch.</h2>
+                                <h2 style={{display:'inline'}}>Update Contact.</h2>
                             </div>
                             <div className="col-md-2">
-                              <button className="btn btn-sm btn-info" style={{marginTop:20}}>
-                                  <Link to={`/feedback`} classname="" style={{color:'black'}}>Feedback</Link>
-                              </button>
+                                <button className="btn btn-sm btn-info" style={{marginTop:20}}>
+                                    <Link to={`/feedback`} classname="" style={{color:'black'}}>Feedback</Link>
+                                </button>
                             </div>
                         </div>
-
-
                     </div>
                     <div className="inner-container">
                         <div className="row clearfix">
@@ -70,26 +74,26 @@ const Contact = () => {
                                 <div className="inner-column">
 
                                     <div className="contact-form">
-                                        <form onSubmit={handleSubmit}>
+                                        <form onSubmit={editContact}>
                                             <div className="row clearfix">
                                                 <div className="form-group col-md-6 col-sm-6 co-xs-12">
-                                                    <input type="text" name={name} placeholder="Name"
+                                                    <input type="text" name={name} placeholder="Name" value={name}
                                                            onChange={e => setName(e.target.value)}/>
                                                 </div>
                                                 <div className="form-group col-md-6 col-sm-6 co-xs-12">
-                                                    <input type="email" name={email} placeholder="Email"
+                                                    <input type="email" name={email} placeholder="Email"  value={email}
                                                            onChange={e => setEmail(e.target.value)}/>
                                                 </div>
                                                 <div className="form-group col-md-6 col-sm-6 co-xs-12">
-                                                    <input type="text" name={subject} placeholder="Subject"
+                                                    <input type="text" name={subject} placeholder="Subject"  value={subject}
                                                            onChange={e => setSubject(e.target.value)}/>
                                                 </div>
                                                 <div className="form-group col-md-6 col-sm-6 co-xs-12">
-                                                    <input type="text" name={phone} placeholder="Phone"
+                                                    <input type="text" name={phone} placeholder="Phone"  value={phone}
                                                            onChange={e => setPhone(e.target.value)}/>
                                                 </div>
                                                 <div className="form-group col-md-12 col-sm-12 co-xs-12">
-                                                    <textarea name={message} placeholder="Massage"
+                                                    <textarea name={message} placeholder="Massage" value={message}
                                                               onChange={e => setMessage(e.target.value)}></textarea>
                                                 </div>
                                                 <div className="form-group col-md-12 col-sm-12 co-xs-12">
@@ -108,18 +112,18 @@ const Contact = () => {
                                 <div className="inner-column">
                                     <h2>Contact Info</h2>
                                     <ul className="list-info">
-                                        <li><FaGlobe />123 lorem ispum Abc, Street Chandigarh.
+                                        <li><i className="fas fa-globe"></i>123 lorem ispum Abc, Street Chandigarh.
                                         </li>
-                                        <li><FaEnvelope />example@test</li>
-                                        <li><FaPhone /> 1-234-567-890 1-234-567-890</li>
+                                        <li><i className="far fa-envelope"></i>example@test</li>
+                                        <li><i className="fas fa-phone"></i> 1-234-567-890 1-234-567-890</li>
                                     </ul>
                                     <ul className="social-icon-four">
                                         <li className="follow">Follow on:</li>
-                                        <li><a href="#"><FiInstagram /></a></li>
-                                        <li><a href="#"><FaTelegramPlane /></a></li>
-                                        <li><a href="#"><FaFacebookSquare /></a></li>
-                                        <li><a href="#"></a></li>
-                                        <li><a href="#"></a></li>
+                                        <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i className="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i className="fab fa-google-plus-g"></i></a></li>
+                                        <li><a href="#"><i className="fab fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i className="fab fa-pinterest-p"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -201,4 +205,4 @@ const Contact = () => {
 
 }
 
-export default Contact;
+export default EditContacts;
