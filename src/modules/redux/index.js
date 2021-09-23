@@ -1,5 +1,7 @@
 import {DECREMENT, INCREMENT} from "./conts";
 import {combineReducers} from 'redux'
+import todoReducer from "../todo/reducer";
+import contactReducer from "../contact/reducer";
 
 function counterReducer(state = 0, action) {
 
@@ -14,5 +16,7 @@ function counterReducer(state = 0, action) {
 }
 
 export const rootReducer = combineReducers({
-    counter: counterReducer
+    counter: counterReducer,
+    todo: todoReducer,
+    contactReducer,
 })

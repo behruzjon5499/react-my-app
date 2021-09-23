@@ -7,7 +7,9 @@ import contactReducer from "./modules/contact/reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css'
-const store = createStore(contactReducer,composeWithDevTools())
+import todoReducer from "./modules/todo/reducer";
+import {rootReducer} from "./modules/redux";
+const store = createStore(rootReducer,composeWithDevTools())
 ReactDOM.render(
     <Provider store={store}>
         <div className="container">

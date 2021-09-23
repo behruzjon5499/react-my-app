@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import '../../assets/styles/contact.css'
 import {toast} from "react-toastify";
+import contactReducer from "./reducer";
 
 const Feedback = () => {
 
-    const contacts = useSelector(state => state);
+    const contacts = useSelector(state => state.contactReducer);
     const dispatch = useDispatch();
     const deleteContact = (id) => {
         dispatch({type: 'DELETE_CONTACT', payload: id});

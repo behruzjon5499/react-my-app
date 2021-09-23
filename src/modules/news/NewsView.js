@@ -21,10 +21,10 @@ class NewsView extends Component {
                 <div className="row news">
 
                     <div className="col-md-6">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur beatae dicta dolor
+                     <h3>  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aspernatur beatae dicta dolor
                         doloremque esse ex expedita fugit,
                         laboriosam laudantium pariatur possimus quaerat quasi quia tempora temporibus, tenetur
-                        voluptatem voluptatum.
+                        voluptatem voluptatum.</h3>
                     </div>
                     <div className="col-md-6">
                         <img className="news-img" src={news.avatar}  alt=""/>

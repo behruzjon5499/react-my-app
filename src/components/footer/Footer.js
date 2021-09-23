@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
 import '../../assets/styles/footer.scss';
+import {
+    FaTelegramPlane,
+    FaFacebookSquare,
+    FaPhone,
+    FaEnvelope,
+    FaGlobe,
+    FaFacebook,
+    FaTelegram,
+    FaInstagram
+} from 'react-icons/fa';
 class Footer extends Component {
     render() {
         return (
@@ -57,10 +67,10 @@ class Footer extends Component {
                                          >
                                         <h3 className="f-title f_600 t_color f_size_18">Team Solutions</h3>
                                         <div className="f_social_icon">
-                                            <a href="#" className="fab fa-facebook"></a>
-                                            <a href="#" className="fab fa-twitter"></a>
-                                            <a href="#" className="fab fa-linkedin"></a>
-                                            <a href="#" className="fab fa-pinterest"></a>
+                                            <a href=""><FaFacebook /></a>
+                                            <a href=""><FaTelegram /></a>
+                                            <a href=""><FaInstagram /></a>
+                                            <a href=""><FaTelegramPlane /></a>
                                         </div>
                                     </div>
                                 </div>

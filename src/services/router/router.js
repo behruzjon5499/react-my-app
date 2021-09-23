@@ -10,6 +10,8 @@ import Footer from "../../components/footer/Footer";
 import ReduxExample from "../../modules/redux/reduxExample";
 import Feedback from "../../modules/contact/feedback";
 import EditContacts from "../../modules/contact/editContact";
+import Gallery from "../../modules/gallery/gallery";
+import Todo from "../../modules/todo/todo";
 
 class Router extends Component {
 
@@ -27,6 +29,8 @@ class Router extends Component {
                     <Route exact path="/test" component={ReduxExample}/>
                     <Route exact path="/feedback" component={Feedback}/>
                     <Route exact path="/contact/edit/:id" component={EditContacts}/>
+                    <Route exact path="/gallery" component={Gallery}/>
+                    <Route exact path="/todo" component={Todo}/>
                 </Switch>
                 <Footer/>
             </BrowserRouter>

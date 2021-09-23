@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import {useHistory} from "react-router"
 import {Link, useParams} from "react-router-dom";
+import contactReducer from "./reducer";
 
 const EditContacts = () => {
     const [name, setName] = useState('');
@@ -13,7 +14,7 @@ const EditContacts = () => {
     const [phone, setPhone] = useState('');
     const [message, setMessage] = useState('');
     const {id} = useParams()
-    const contacts = useSelector(state => state)
+    const contacts = useSelector(state => state.contactReducer)
     const currentContact = contacts.find(contact => contact.id === parseInt(id))
 
     useEffect(()=>{
